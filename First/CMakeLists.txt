@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.0.0)
+project( Deneme )
+
+find_package( OpenThreads )
+find_package( osg )
+find_package( osgDB )
+find_package( osgUtil )
+find_package( osgViewer )
+
+macro( config_project PROJNAME LIBNAME )
+	include_directories( ${${LIBNAME}_INCLUDE_DIR} )
+	target_link_libraries( ${PROJNAME} ${${LIBNAME}_LIBRARY} )
+endmacro()
+
+add_executable( Deneme main.cpp )
+config_project( Deneme OPENTHREADS )
+config_project( Deneme OSG )
+config_project( Deneme OSGDB )
+config_project( Deneme OSGUTIL )
+config_project( Deneme OSGVIEWER )
